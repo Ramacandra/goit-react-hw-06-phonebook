@@ -1,27 +1,13 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import { addContact } from '../../redux/contactSlice';
-import { nanoid } from 'nanoid';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './ContactForm.css';
 
-const ContactForm = () => {
-  const dispatch = useDispatch();
-
-  const handleSubmit = event => {
-    event.preventDefault();
-    const newContact = {
-      id: nanoid(),
-      name: event.target.name.value,
-      number: event.target.number.value,
-    };
-    dispatch(addContact(newContact));
-    event.target.reset();
-  };
-
-  return (
-    <div>
-      <form className="submit-form" onSubmit={handleSubmit}>
-      <div className="flex mb-2">
+export default class ContactForm extends Component {
+  render() {
+    return (
+      <div>
+        <form className="submit-form" onSubmit={this.props.addContact}>
+          <div className="flex mb-2">
             <label>Name</label>
             <input
               type="text"
@@ -44,10 +30,12 @@ const ContactForm = () => {
           <div className="flex mb-2">
             <button className="btn btn-submit">Add Contact</button>
           </div>
-      </form>
-    </div>
-  );
+        </form>
+      </div>
+    );
+  }
+}
+
+ContactForm.propTypes = {
+  addContact: PropTypes.func,
 };
-
-export default ContactForm;
-

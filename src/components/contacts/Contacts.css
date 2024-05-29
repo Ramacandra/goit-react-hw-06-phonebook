@@ -1,10 +1,5 @@
 .contact-list__item p {
-  list-style: none;
   display: inline-block;
   margin-right: 10px;
   width: 220px;
-}
-
-.contact-list {
-  list-style: none;
 }
